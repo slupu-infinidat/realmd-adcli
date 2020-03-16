@@ -288,7 +288,9 @@ static adcli_result
 ensure_computer_password (adcli_result res,
                       adcli_enroll *enroll)
 {
-	const int length = 120;
+    // We experienced authentication failures with lengths larger than 32
+    // https://exchangepedia.com/2007/01/what-is-the-real-maximum-password-length.html
+	const int length = 32;
 
 	if (res != ADCLI_SUCCESS)
 		return res;
